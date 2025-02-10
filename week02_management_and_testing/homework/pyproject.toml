@@ -1,0 +1,23 @@
+[project]
+name = "week02-management-and-testing"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.8"
+
+dependencies = [
+    "torch",
+    "torchvision",
+    "wandb",
+    "tqdm",
+    "numpy",
+    "dvc",
+    "hydra-core",
+    "omegaconf",
+]
+
+[tool.uv]
+dev-dependencies = ["pytest", "pytest-cov"]
+
+[tool.uv.workspace]
+members = ["homework"]

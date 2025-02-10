@@ -98,6 +98,7 @@ class UnetModel(nn.Module):
         self.up3 = UpBlock(2 * hidden_size, hidden_size)
         self.out = nn.Conv2d(2 * hidden_size, self.out_channels, 3, 1, 1)
 
+
     def forward(self, x: torch.Tensor, t: torch.Tensor) -> torch.Tensor:
         x = self.init_conv(x)
 
@@ -107,7 +108,8 @@ class UnetModel(nn.Module):
 
         thro = self.to_vec(down3)
         temb = self.timestep_embedding(t)
-
+        temb = temb[:, :, None, None]
+        # print(thro.shape, temb.shape)
         thro = self.up0(thro + temb)
 
         up1 = self.up1(thro, down3) + temb

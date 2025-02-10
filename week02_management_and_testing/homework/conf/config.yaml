@@ -1,0 +1,10 @@
+defaults:
+  - _self_
+  - dataset: cifar10
+  - train/model: ddpm
+  - train/optimizer: adam
+  - train/train_params: default
+  - train/transform: cifar10
+
+wandb:
+  project_name: "diffusion"

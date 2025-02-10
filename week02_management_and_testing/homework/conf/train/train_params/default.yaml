@@ -1,0 +1,3 @@
+batch_size: 4
+epochs: 5
+device: "cpu"
