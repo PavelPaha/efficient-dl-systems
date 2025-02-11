@@ -1,0 +1,7 @@
+stages:
+  prepare_data:
+    cmd: sh download_data.sh
+  train:
+    cmd: python3 main.py
+    deps:
+      - train

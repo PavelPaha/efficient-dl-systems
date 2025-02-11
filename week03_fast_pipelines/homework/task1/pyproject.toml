@@ -1,0 +1,21 @@
+[project]
+name = "task1"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11"
+
+dependencies = [
+    "torch",
+    "torchvision",
+    "wandb",
+    "tqdm",
+    "numpy",
+    "dvc",
+    "hydra-core",
+    "omegaconf",
+    "matplotlib",
+]
+
+[tool.uv]
+dev-dependencies = ["pytest", "pytest-cov"]
