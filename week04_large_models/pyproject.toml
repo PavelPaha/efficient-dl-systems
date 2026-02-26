@@ -1,0 +1,18 @@
+[project]
+name = "week04-large-models"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "accelerate>=1.12.0",
+    "datasets>=4.5.0",
+    "ipykernel>=7.2.0",
+    "matplotlib>=3.10.8",
+    "nvitop>=1.6.2",
+    "perfetto>=0.16.0",
+    "pytest>=9.0.2",
+    "pytest-asyncio>=1.3.0",
+    "torch>=2.10.0",
+    "transformers>=5.2.0",
+]
