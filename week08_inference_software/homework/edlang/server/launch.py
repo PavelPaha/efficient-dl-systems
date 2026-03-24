@@ -2,7 +2,7 @@ import torch
 
 from edlang.server.api_server import Server
 from edlang.entrypoints.config import EngineConfig, ModelConfig
-from edlang.managers.scheduler_manager import SchedulerConfig
+from edlang.managers.scheduler_manager import PrefillPolicy, SchedulerConfig
 
 import argparse
 
@@ -19,7 +19,7 @@ def torch_dtype_from_str(s: str) -> torch.dtype:
 
 def launch_server(
     model_name: str, device: str, torch_dtype: torch.dtype, max_prompt_length: int, enable_metrics: bool,
-    max_batch_size: int, max_waiting_requests: int, prefill_timeout_ms: float
+    max_batch_size: int, max_waiting_requests: int, prefill_timeout_ms: float, prefill_policy: PrefillPolicy,
 ):
     model_config = ModelConfig(
         model_name=model_name,
@@ -33,7 +33,8 @@ def launch_server(
         enable_metrics=enable_metrics,
         max_batch_size=max_batch_size,
         max_waiting_requests=max_waiting_requests,
-        prefill_timeout_ms=prefill_timeout_ms
+        prefill_timeout_ms=prefill_timeout_ms,
+        prefill_policy=prefill_policy,
     )
 
     server = Server(engine_config, scheduler_config)
@@ -49,6 +50,7 @@ if __name__ == "__main__":
     parser.add_argument("--max-batch-size", type=int, default=20, help="Maximum batch size")
     parser.add_argument("--max-waiting-requests", type=int, default=100, help="Maximum waiting requests")
     parser.add_argument("--prefill-timeout-ms", type=float, default=50.0, help="Prefill timeout in milliseconds")
+    parser.add_argument("--prefill-policy", type=PrefillPolicy, choices=list(PrefillPolicy), default=PrefillPolicy.SERIAL, help="Prefill admission policy (see PrefillPolicy / SchedulerConfig.prefill_policy)")
 
     args = parser.parse_args()
 
@@ -62,5 +64,6 @@ if __name__ == "__main__":
         enable_metrics=args.enable_metrics,
         max_batch_size=args.max_batch_size,
         max_waiting_requests=args.max_waiting_requests,
-        prefill_timeout_ms=args.prefill_timeout_ms
+        prefill_timeout_ms=args.prefill_timeout_ms,
+        prefill_policy=args.prefill_policy,
     )    

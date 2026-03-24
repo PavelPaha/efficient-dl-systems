@@ -18,15 +18,18 @@ class MetricManager:
     
     def calculate_throughtput_tokens_per_second(self, tokens_num: int, time_s: float):
         # TODO: Implement throughput calculation
-        raise NotImplementedError("Implement throughput calculation")
+        self.throughput_tokens_per_second = tokens_num / time_s
+        # raise NotImplementedError("Implement throughput calculation")
 
     def update_waiting_queue_num(self, num: int):
         # TODO: Implement waiting queue number update
-        raise NotImplementedError("Implement waiting queue number update")
+        self.waiting_queue_num = num
+        # raise NotImplementedError("Implement waiting queue number update")
 
     def update_active_requests_num(self, num: int):
         # TODO: Implement active requests number update
-        raise NotImplementedError("Implement active requests number update")
+        self.active_requests_num = num
+        # raise NotImplementedError("Implement active requests number update")
 
     def set_no_work(self):
         # TODO: Implement no work state update
